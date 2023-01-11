@@ -1,9 +1,10 @@
 <template>
   <div class="jokes__box">
     <p class="jokes__box--text">
-      <span>{{ joke.id }} </span> {{ joke.text }}
+      <my-numbering> {{index + 1}}</my-numbering>
+      {{ joke.setup }}
     </p>
-    <button class="jokes__box--delete">❌</button>
+    <button @click="$emit('remove',joke)" class="jokes__box--delete">❌</button>
   </div>
 </template>
 
@@ -15,6 +16,10 @@ export default {
       type: Object,
       required: true,
     },
+    index: {
+      type: Number,
+      required: true,
+    }
   }
 }
 </script>

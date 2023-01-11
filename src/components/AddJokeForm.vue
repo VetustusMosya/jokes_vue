@@ -1,8 +1,9 @@
 <template>
   <form @submit.prevent
         class="jokes__box jokes__form">
-    <input v-model="joke.text"
-           class="jokes__form--input" type="text" placeholder="Input joke">
+    <my-input v-model="joke.setup"
+              class="jokes__form--input" type="text" placeholder="Input joke">
+    </my-input>
     <button @click="addJoke"
             class="jokes__form--button">Add
     </button>
@@ -15,16 +16,16 @@ export default {
   data: () => ({
     joke: {
       id:  0,
-      text: '',
+      setup: '',
     }
   }),
   methods: {
     addJoke(){
-      this.joke.id = Date.now() % 100;
+      this.joke.id = Date.now() % 10000;
       this.$emit('add', this.joke);
       this.joke = {
         id: 0,
-        text: '',
+        setup: '',
       }
     },
   }
@@ -32,5 +33,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.jokes__form{
+  border-color: #2c3e50;
+  &--input{
+    border: #42b983 1px solid;
+    padding: 3px;
+  }
+  &--button{
+    border: none;
+    background-color: #42b983;
+    padding: 3px 6px;
+    color: white;
+  }
+}
 </style>

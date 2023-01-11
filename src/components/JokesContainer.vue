@@ -1,11 +1,12 @@
 <template>
   <h4 class="">Jokes list</h4>
-  <joke-box  v-for="joke in jokes" :joke="joke"
+  <joke-box  v-for="(joke, i) in jokes" :joke="joke" :index="i" :key="joke.id"
+             @remove="$emit('remove', joke)"
   ></joke-box>
 </template>
 
 <script>
-import JokeBox from "@/components/jokeBox.vue";
+import JokeBox from "@/components/JokeBox.vue";
 export default {
   name: 'JokesContainer',
   components: {JokeBox},
